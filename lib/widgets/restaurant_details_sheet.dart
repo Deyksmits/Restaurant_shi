@@ -216,15 +216,15 @@ class RestaurantDetailsSheet extends StatelessWidget {
                                       ),
                                       if (item.isVegetarian) ...[
                                         const SizedBox(width: 6),
-                                        const Text('🌱', title: 'Vegetarian'),
+                                        const Text('🌱', semanticsLabel: 'Vegetarian'),
                                       ],
                                       if (item.isHalal) ...[
                                         const SizedBox(width: 4),
-                                        const Text('🌙', title: 'Halal'),
+                                        const Text('🌙', semanticsLabel: 'Halal'),
                                       ],
                                       if (item.isGlutenFree) ...[
                                         const SizedBox(width: 4),
-                                        const Text('🌾', title: 'Gluten Free'),
+                                        const Text('🌾', semanticsLabel: 'Gluten Free'),
                                       ],
                                     ],
                                   ),

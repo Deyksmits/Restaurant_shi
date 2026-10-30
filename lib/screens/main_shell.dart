@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../theme/app_theme.dart';
 import 'home/home_screen.dart';
 import 'groups/groups_screen.dart';
 import 'favourites/favourites_screen.dart';
