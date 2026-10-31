@@ -22,14 +22,14 @@ if %ERRORLEVEL% EQU 0 (
     echo SUCCES! De code staat op GitHub.
     echo.
     echo Ga nu naar je browser:
-    echo   1. Open: https://github.com/Sayk138/Restaurant_shi/actions
+    echo   1. Open: https://github.com/Deyksmits/Restaurant_shi/actions
     echo   2. De virtuele Mac is nu automatisch bezig de IPA te bouwen!
     echo   3. Na ~5 minuten kun je de "TasteMatch-iOS-IPA" direct downloaden.
     echo ======================================================================
 ) else (
     echo ======================================================================
     echo ER IS EEN FOUT OPGETREDEN BIJ HET PUSHEN.
-    echo Controleer of de repository https://github.com/Sayk138/Restaurant_shi
+    echo Controleer of de repository https://github.com/Deyksmits/Restaurant_shi
     echo bestaat op GitHub en of je bent ingelogd.
     echo Tip: Je kunt ook GitHub Desktop openen en op "Publish" / "Push" klikken!
     echo ======================================================================
