@@ -3,7 +3,7 @@ import '../models/restaurant.dart';
 
 final List<Restaurant> kRotterdamRestaurantsSeed = [
   // 1. Supermercado
-  Restaurant(
+  const Restaurant(
     id: 'rot_01',
     name: 'Supermercado',
     tagline: 'Vibrant Latin American street food, ceviche & mezcal cocktails',
@@ -46,7 +46,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 2. Dudok
-  Restaurant(
+  const Restaurant(
     id: 'rot_02',
     name: 'Dudok Rotterdam',
     tagline: 'The bustling cultural grand café famous for the original Dudok Dutch Appeltaart',
@@ -88,7 +88,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 3. Kaat Mossel
-  Restaurant(
+  const Restaurant(
     id: 'rot_03',
     name: 'Kaat Mossel',
     tagline: 'The quintessential Rotterdam seafood haven: legendary Zeeland mussels & oysters',
@@ -123,7 +123,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 4. Hotel New York
-  Restaurant(
+  const Restaurant(
     id: 'rot_04',
     name: 'Hotel New York',
     tagline: 'Historic Holland-America Line headquarters with legendary oyster bar',
@@ -166,7 +166,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 5. Bazar Rotterdam
-  Restaurant(
+  const Restaurant(
     id: 'rot_05',
     name: 'Bazar Rotterdam',
     tagline: 'Colorful oriental souk palace with Middle Eastern & North African banquets',
@@ -201,7 +201,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 6. Ter Marsch & Co
-  Restaurant(
+  const Restaurant(
     id: 'rot_06',
     name: 'Ter Marsch & Co',
     tagline: 'Award-winning burger champions with dry-aged Scottish beef and truffle mayo',
@@ -235,7 +235,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 7. Fenix Food Factory
-  Restaurant(
+  const Restaurant(
     id: 'rot_07',
     name: 'Fenix Food Factory',
     tagline: 'Artisanal market warehouse in Katendrecht with Kaapse craft beers & local cheese',
@@ -269,7 +269,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 8. Heroine
-  Restaurant(
+  const Restaurant(
     id: 'rot_08',
     name: 'Heroine Restaurant & Bar',
     tagline: 'Brutalist industrial dining room serving adventurous seasonal tasting menus',
@@ -303,7 +303,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 9. Bird Rotterdam
-  Restaurant(
+  const Restaurant(
     id: 'rot_09',
     name: 'Bird Rotterdam',
     tagline: 'Jazz club, wood-fired Neapolitan pizzas & soul food under the Hofbogen arches',
@@ -337,7 +337,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 10. Ayla
-  Restaurant(
+  const Restaurant(
     id: 'rot_10',
     name: 'Ayla Rotterdam',
     tagline: 'Vibrant Mediterranean shared dining & tapas across Spanish and Levantine flavours',
@@ -372,7 +372,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 11. Bokaal Rotterdam
-  Restaurant(
+  const Restaurant(
     id: 'rot_11',
     name: 'Bokaal Rotterdam',
     tagline: 'Spirited beer bar and bustling square terrace on the Nieuwemarkt',
@@ -406,7 +406,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 12. De Harmonie 23
-  Restaurant(
+  const Restaurant(
     id: 'rot_12',
     name: 'De Harmonie 23',
     tagline: 'Seasonal gastronomy and secluded secret garden on the historic Westersingel',
@@ -440,7 +440,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 13. FG Food Labs
-  Restaurant(
+  const Restaurant(
     id: 'rot_13',
     name: 'FG Food Labs',
     tagline: 'Michelin-starred culinary laboratory by chef François Geurds',
@@ -474,7 +474,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 14. Little V Rotterdam
-  Restaurant(
+  const Restaurant(
     id: 'rot_14',
     name: 'Little V Rotterdam',
     tagline: 'Lush tropical South-Vietnamese street food & cocktails on Grotekerkplein',
@@ -509,7 +509,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 15. Gusto Rotterdam
-  Restaurant(
+  const Restaurant(
     id: 'rot_15',
     name: 'Gusto Rotterdam',
     tagline: 'Authentic Italian trattoria with organic pasta made fresh daily',
@@ -544,7 +544,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 16. De Ballentent
-  Restaurant(
+  const Restaurant(
     id: 'rot_16',
     name: 'De Ballentent',
     tagline: 'Iconic authentic sailor pub on the Maas: the best Dutch Gehaktbal in Rotterdam',
@@ -578,7 +578,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 17. Takumi Rotterdam
-  Restaurant(
+  const Restaurant(
     id: 'rot_17',
     name: 'Takumi Ramen Rotterdam',
     tagline: 'Authentic Sapporo noodles and rich Tonkotsu pork broth on the West-Kruiskade',
@@ -612,7 +612,7 @@ final List<Restaurant> kRotterdamRestaurantsSeed = [
   ),
 
   // 18. Spikizi Bar
-  Restaurant(
+  const Restaurant(
     id: 'rot_18',
     name: 'Spikizi Bar',
     tagline: 'Cozy speakeasy cocktail sanctuary with dim lighting and gourmet bar bites',

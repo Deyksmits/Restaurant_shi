@@ -33,6 +33,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.background,
+      cardColor: AppColors.surface,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
         primary: AppColors.primary,
@@ -89,14 +90,6 @@ class AppTheme {
             fontSize: 15,
             fontWeight: FontWeight.w600,
           ),
-        ),
-      ),
-      cardTheme: CardTheme(
-        color: AppColors.surface,
-        elevation: 3,
-        shadowColor: Colors.black.withOpacity(0.08),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
         ),
       ),
       chipTheme: ChipThemeData(

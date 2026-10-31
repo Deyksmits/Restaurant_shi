@@ -20,7 +20,7 @@ class _RestaurantPortalScreenState extends ConsumerState<RestaurantPortalScreen>
   final _menuItemPriceController = TextEditingController();
   String _selectedCity = 'Amsterdam';
   String _selectedPrice = '€€';
-  String _selectedCategory = 'Borrel & Bites';
+  final String _selectedCategory = 'Borrel & Bites';
 
   bool _isSubmitting = false;
 

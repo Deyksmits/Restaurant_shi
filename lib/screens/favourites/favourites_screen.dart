@@ -100,18 +100,18 @@ class _FavouritesScreenState extends ConsumerState<FavouritesScreen> {
           // Main View (List or Map)
           Expanded(
             child: filteredFavorites.isEmpty
-                ? Center(
+                ? const Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.favorite_border_rounded, size: 64, color: AppColors.textMuted),
-                        const SizedBox(height: 12),
-                        const Text(
+                        Icon(Icons.favorite_border_rounded, size: 64, color: AppColors.textMuted),
+                        SizedBox(height: 12),
+                        Text(
                           'No favourites yet',
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                         ),
-                        const SizedBox(height: 6),
-                        const Text(
+                        SizedBox(height: 6),
+                        Text(
                           'Swipe right on restaurants in the Explore tab to save them here.',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 13, color: AppColors.textSecondary),

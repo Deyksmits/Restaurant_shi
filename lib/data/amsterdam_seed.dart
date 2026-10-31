@@ -3,7 +3,7 @@ import '../models/restaurant.dart';
 
 final List<Restaurant> kAmsterdamRestaurantsSeed = [
   // 1. Café de Klos
-  Restaurant(
+  const Restaurant(
     id: 'ams_01',
     name: 'Café de Klos',
     tagline: 'Legendary grill & cozy authentic brown café atmosphere',
@@ -46,7 +46,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 2. Restaurant Blauw
-  Restaurant(
+  const Restaurant(
     id: 'ams_02',
     name: 'Restaurant Blauw Amsterdam',
     tagline: 'Authentic Indonesian culinary heritage & legendary 16-dish Rijsttafel',
@@ -81,7 +81,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 3. Vegan Junk Food Bar
-  Restaurant(
+  const Restaurant(
     id: 'ams_03',
     name: 'Vegan Junk Food Bar',
     tagline: 'Futuristic plant-based junk food with neon colors and wild loaded fries',
@@ -117,7 +117,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 4. Cannibale Royale
-  Restaurant(
+  const Restaurant(
     id: 'ams_04',
     name: 'Cannibale Royale',
     tagline: 'Late-night brasserie extraordinaire serving dry-aged meat, ribs & craft beers',
@@ -151,7 +151,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 5. De Kas
-  Restaurant(
+  const Restaurant(
     id: 'ams_05',
     name: 'Restaurant De Kas',
     tagline: 'Michelin Green Star farm-to-table dining inside historic 1926 glass greenhouses',
@@ -186,7 +186,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 6. Rijsel
-  Restaurant(
+  const Restaurant(
     id: 'ams_06',
     name: 'Rijsel',
     tagline: 'Nostalgic French-Flemish rotisserie & open kitchen in an old domestic science school',
@@ -221,7 +221,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 7. Winkel 43
-  Restaurant(
+  const Restaurant(
     id: 'ams_07',
     name: 'Winkel 43',
     tagline: 'World-famous warm Dutch apple pie on the historic Jordaan canal square',
@@ -256,7 +256,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 8. Pllek
-  Restaurant(
+  const Restaurant(
     id: 'ams_08',
     name: 'Pllek',
     tagline: 'Huge creative shipping container pavilion on the IJ with sandy beach and firepit',
@@ -292,7 +292,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 9. Bar Botanique
-  Restaurant(
+  const Restaurant(
     id: 'ams_09',
     name: 'Bar Botanique',
     tagline: 'Lush tropical cafe des sphiers in Amsterdam East with French-Mediterranean classics',
@@ -326,7 +326,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 10. Brouwerij 't IJ
-  Restaurant(
+  const Restaurant(
     id: 'ams_10',
     name: "Brouwerij 't IJ",
     tagline: 'Iconic Amsterdam craft brewery nestled under the monumental De Gooyer windmill',
@@ -360,7 +360,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 11. Moeders
-  Restaurant(
+  const Restaurant(
     id: 'ams_11',
     name: 'Moeders',
     tagline: 'Heartwarming traditional Dutch home cooking: Stamppot, Suddervlees & mom memories',
@@ -394,7 +394,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 12. Waterkant
-  Restaurant(
+  const Restaurant(
     id: 'ams_12',
     name: 'Waterkant',
     tagline: 'Surinamese soul food and sunny canal deck inspired by Paramaribo',
@@ -429,7 +429,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 13. Coba Taqueria
-  Restaurant(
+  const Restaurant(
     id: 'ams_13',
     name: 'Coba Taqueria',
     tagline: 'Lively Mexican taco hotspot with handmade nixtamal tortillas & rare mezcals',
@@ -464,7 +464,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 14. Choux
-  Restaurant(
+  const Restaurant(
     id: 'ams_14',
     name: 'Choux',
     tagline: 'Avant-garde vegetable-driven culinary art & natural wines near Centraal Station',
@@ -499,7 +499,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 15. Fou Fow Ramen
-  Restaurant(
+  const Restaurant(
     id: 'ams_15',
     name: 'Fou Fow Ramen',
     tagline: 'Artisanal steaming Japanese noodle bowls simmered fresh in the Jordaan',
@@ -533,7 +533,7 @@ final List<Restaurant> kAmsterdamRestaurantsSeed = [
   ),
 
   // 16. Café de Ceuvel
-  Restaurant(
+  const Restaurant(
     id: 'ams_16',
     name: 'Café de Ceuvel',
     tagline: 'Circular organic waterside café built on a former shipyard in Amsterdam North',

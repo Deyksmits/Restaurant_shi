@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:restaurant_shi/models/group_session.dart';
+import 'package:restaurant_shi/services/cloud_sync_service.dart';
 
 void main() {
   group('CloudSyncService & Multiplayer Logic Tests', () {
@@ -13,8 +14,8 @@ void main() {
         matchRule: MatchRule.unanimous,
         status: GroupStatus.lobby,
         hostId: 'user_host',
-        members: [
-          const GroupMember(
+        members: const [
+          GroupMember(
             userId: 'user_host',
             displayName: 'Host User',
             avatarUrl: 'https://example.com/host.jpg',
@@ -22,7 +23,7 @@ void main() {
             isReady: true,
             dietaryPreferences: ['Vegetarian'],
           ),
-          const GroupMember(
+          GroupMember(
             userId: 'user_friend',
             displayName: 'Friend iPhone',
             avatarUrl: 'https://example.com/friend.jpg',
@@ -31,11 +32,11 @@ void main() {
             dietaryPreferences: ['Gluten-free'],
           ),
         ],
-        restaurantDeckIds: ['dh_01', 'dh_02', 'dh_03'],
-        votes: {
+        restaurantDeckIds: const ['dh_01', 'dh_02', 'dh_03'],
+        votes: const {
           'dh_01': ['user_host', 'user_friend'],
         },
-        matchedRestaurantIds: ['dh_01'],
+        matchedRestaurantIds: const ['dh_01'],
       );
 
       final json = session.toJson();
@@ -51,8 +52,14 @@ void main() {
       expect(reconstituted.pinCode, session.pinCode);
       expect(reconstituted.members.first.displayName, 'Host User');
       expect(reconstituted.votes['dh_01']?.length, 2);
-      expect(reconstituted.aggregatedDietaryRestrictions.contains('Vegetarian'), true);
-      expect(reconstituted.aggregatedDietaryRestrictions.contains('Gluten-free'), true);
+      expect(
+        reconstituted.aggregatedDietaryRestrictions.contains('Vegetarian'),
+        true,
+      );
+      expect(
+        reconstituted.aggregatedDietaryRestrictions.contains('Gluten-free'),
+        true,
+      );
     });
 
     test('Majority vs Unanimous matching rules work accurately', () {
@@ -63,7 +70,9 @@ void main() {
       ];
 
       // Case 1: 2 out of 3 like it -> Majority MATCHES, Unanimous DOES NOT
-      final votes2of3 = {'dh_01': ['u1', 'u2']};
+      final votes2of3 = {
+        'dh_01': ['u1', 'u2'],
+      };
 
       final majorityPass = votes2of3['dh_01']!.length > (members.length / 2);
       final unanimousPass = votes2of3['dh_01']!.length >= members.length;
@@ -72,8 +81,79 @@ void main() {
       expect(unanimousPass, false);
 
       // Case 2: 3 out of 3 like it -> Both MATCH
-      final votes3of3 = {'dh_01': ['u1', 'u2', 'u3']};
+      final votes3of3 = {
+        'dh_01': ['u1', 'u2', 'u3'],
+      };
       expect(votes3of3['dh_01']!.length >= members.length, true);
+    });
+
+    test('CRDT mergeSessions preserves concurrent swipes and detects matches across iPhones', () {
+      final phone1State = GroupSession(
+        id: 'group_crdt_1',
+        pinCode: '111 222',
+        title: 'Den Haag Swipe',
+        locationCity: 'Den Haag',
+        targetDate: DateTime(2026, 11, 15),
+        matchRule: MatchRule.unanimous,
+        status: GroupStatus.swiping,
+        hostId: 'iphone_1',
+        members: const [
+          GroupMember(
+            userId: 'iphone_1',
+            displayName: 'Phone 1',
+            avatarUrl: '',
+            isHost: true,
+          ),
+          GroupMember(
+            userId: 'iphone_2',
+            displayName: 'Phone 2',
+            avatarUrl: '',
+          ),
+        ],
+        restaurantDeckIds: const ['dh_01', 'dh_02'],
+        votes: const {
+          'dh_01': ['iphone_1'],
+        },
+        matchedRestaurantIds: const [],
+      );
+
+      final phone2State = GroupSession(
+        id: 'group_crdt_1',
+        pinCode: '111 222',
+        title: 'Den Haag Swipe',
+        locationCity: 'Den Haag',
+        targetDate: DateTime(2026, 11, 15),
+        matchRule: MatchRule.unanimous,
+        status: GroupStatus.swiping,
+        hostId: 'iphone_1',
+        members: const [
+          GroupMember(
+            userId: 'iphone_1',
+            displayName: 'Phone 1',
+            avatarUrl: '',
+            isHost: true,
+          ),
+          GroupMember(
+            userId: 'iphone_2',
+            displayName: 'Phone 2',
+            avatarUrl: '',
+          ),
+        ],
+        restaurantDeckIds: const ['dh_01', 'dh_02'],
+        votes: const {
+          'dh_01': ['iphone_2'],
+          'dh_02': ['iphone_2'],
+        },
+        matchedRestaurantIds: const [],
+      );
+
+      final merged = CloudSyncService.mergeSessions(phone1State, phone2State);
+
+      // Both votes on dh_01 should be preserved and trigger an automatic match!
+      expect(merged.votes['dh_01'], containsAll(['iphone_1', 'iphone_2']));
+      expect(merged.votes['dh_02'], contains('iphone_2'));
+      expect(merged.matchedRestaurantIds, contains('dh_01'));
+      expect(merged.matchedRestaurantIds.contains('dh_02'), false);
     });
   });
 }

@@ -37,7 +37,10 @@ class AuthNotifier extends StateNotifier<UserProfile?> {
     state = await _db.signInWithPhone(phoneNumber);
   }
 
-  Future<void> linkAccount({required String email, required String displayName}) async {
+  Future<void> linkAccount({
+    required String email,
+    required String displayName,
+  }) async {
     await _db.linkGuestAccount(email: email, displayName: displayName);
     state = _db.currentUser;
   }
@@ -54,6 +57,16 @@ class AuthNotifier extends StateNotifier<UserProfile?> {
 
   Future<void> sendFriendRequest(String code) async {
     await _db.sendFriendRequest(code);
+    state = _db.currentUser;
+  }
+
+  Future<void> undoSwipe(String restaurantId) async {
+    await _db.undoSwipe(restaurantId);
+    state = _db.currentUser;
+  }
+
+  Future<void> resetSwipes() async {
+    await _db.clearSwipeHistory();
     state = _db.currentUser;
   }
 }
@@ -75,14 +88,21 @@ final newsFeedProvider = Provider<List<NewsItem>>((ref) {
   return db.newsFeed;
 });
 
-// 5. City Filter Provider
+// 5. Explore Filter Providers
 final selectedCityProvider = StateProvider<String>((ref) => 'All Cities');
+final selectedPriceTierProvider = StateProvider<String>((ref) => 'All');
+final selectedCategoryFilterProvider =
+    StateProvider<String>((ref) => 'All Vibes');
+final exploreSearchQueryProvider = StateProvider<String>((ref) => '');
 
 // 6. Solo Explore Adaptive Deck Provider
 final exploreDeckProvider = Provider<List<Restaurant>>((ref) {
   final all = ref.watch(allRestaurantsProvider);
   final user = ref.watch(authProvider);
   final city = ref.watch(selectedCityProvider);
+  final priceTier = ref.watch(selectedPriceTierProvider);
+  final category = ref.watch(selectedCategoryFilterProvider);
+  final searchQuery = ref.watch(exploreSearchQueryProvider);
 
   if (user == null) return all;
 
@@ -90,6 +110,9 @@ final exploreDeckProvider = Provider<List<Restaurant>>((ref) {
     allRestaurants: all,
     user: user,
     preferredCity: city,
+    priceFilter: priceTier,
+    categoryFilter: category,
+    searchQuery: searchQuery,
   );
 });
 
@@ -113,12 +136,16 @@ class ActiveGroupNotifier extends StateNotifier<GroupSession?> {
     required String locationCity,
     required DateTime targetDate,
     required MatchRule matchRule,
+    String? priceFilter,
+    String? categoryFilter,
   }) async {
     final group = await _db.createGroup(
       title: title,
       locationCity: locationCity,
       targetDate: targetDate,
       matchRule: matchRule,
+      priceFilter: priceFilter,
+      categoryFilter: categoryFilter,
     );
     state = group;
 
@@ -164,7 +191,8 @@ class ActiveGroupNotifier extends StateNotifier<GroupSession?> {
   }
 }
 
-final activeGroupProvider = StateNotifierProvider<ActiveGroupNotifier, GroupSession?>((ref) {
+final activeGroupProvider =
+    StateNotifierProvider<ActiveGroupNotifier, GroupSession?>((ref) {
   final db = ref.watch(databaseServiceProvider);
   return ActiveGroupNotifier(db);
 });
@@ -220,7 +248,8 @@ class AdvertiserNotifier extends StateNotifier<AdvertiserVenueState> {
   }
 }
 
-final advertiserProvider = StateNotifierProvider<AdvertiserNotifier, AdvertiserVenueState>((ref) {
+final advertiserProvider =
+    StateNotifierProvider<AdvertiserNotifier, AdvertiserVenueState>((ref) {
   final db = ref.watch(databaseServiceProvider);
   return AdvertiserNotifier(db);
 });

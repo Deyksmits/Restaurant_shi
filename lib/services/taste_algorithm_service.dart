@@ -3,12 +3,15 @@ import '../models/user_profile.dart';
 
 class TasteAlgorithmService {
   /// Ranks restaurants adaptively based on the user's historical swipe tastes,
-  /// dietary restrictions, city preference, and popularity.
+  /// dietary restrictions, city preference, price filter, category filter, and search query.
   static List<Restaurant> rankDeck({
     required List<Restaurant> allRestaurants,
     required UserProfile user,
     String? preferredCity,
     Set<String>? requiredDietaryTags,
+    String? priceFilter,
+    String? categoryFilter,
+    String? searchQuery,
   }) {
     // 1. Build category affinity score from past swipe history
     final categoryAffinities = <String, double>{};
@@ -34,10 +37,11 @@ class TasteAlgorithmService {
 
     // 2. Filter & score candidate restaurants
     final scoredRestaurants = <MapEntry<Restaurant, double>>[];
+    final cleanQuery = searchQuery?.trim().toLowerCase() ?? '';
 
     for (final restaurant in allRestaurants) {
-      // Exclude if already swiped by solo user
-      if (user.swipeHistory.containsKey(restaurant.id)) {
+      // Exclude if already swiped by solo user (unless searching specifically)
+      if (cleanQuery.isEmpty && user.swipeHistory.containsKey(restaurant.id)) {
         continue;
       }
 
@@ -47,6 +51,47 @@ class TasteAlgorithmService {
           preferredCity.toLowerCase() != 'all cities' &&
           preferredCity.toLowerCase() != 'open') {
         if (!restaurant.city.toLowerCase().contains(preferredCity.toLowerCase())) {
+          continue;
+        }
+      }
+
+      // Filter by price tier if specified
+      if (priceFilter != null &&
+          priceFilter.isNotEmpty &&
+          priceFilter != 'All') {
+        if (restaurant.priceTier != priceFilter) {
+          continue;
+        }
+      }
+
+      // Filter by category/vibe if specified
+      if (categoryFilter != null &&
+          categoryFilter.isNotEmpty &&
+          categoryFilter != 'All Vibes') {
+        final hasCat = restaurant.categories.any(
+          (c) => c.toLowerCase().contains(categoryFilter.toLowerCase()),
+        );
+        if (!hasCat) {
+          continue;
+        }
+      }
+
+      // Filter by search query (name, neighborhood, tagline, categories)
+      if (cleanQuery.isNotEmpty) {
+        final matchesName = restaurant.name.toLowerCase().contains(cleanQuery);
+        final matchesNeighborhood =
+            restaurant.neighborhood.toLowerCase().contains(cleanQuery);
+        final matchesCity = restaurant.city.toLowerCase().contains(cleanQuery);
+        final matchesTagline =
+            restaurant.tagline.toLowerCase().contains(cleanQuery);
+        final matchesCategory = restaurant.categories.any(
+          (c) => c.toLowerCase().contains(cleanQuery),
+        );
+        if (!matchesName &&
+            !matchesNeighborhood &&
+            !matchesCity &&
+            !matchesTagline &&
+            !matchesCategory) {
           continue;
         }
       }

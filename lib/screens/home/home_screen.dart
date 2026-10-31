@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import '../../providers/app_providers.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/restaurant_details_sheet.dart';
@@ -15,6 +15,11 @@ class HomeScreen extends ConsumerWidget {
     final user = ref.watch(authProvider);
     final newsFeed = ref.watch(newsFeedProvider);
     final allRestaurants = ref.watch(allRestaurantsProvider);
+    final activeGroup = ref.watch(activeGroupProvider);
+
+    final denHaagRestaurants = allRestaurants
+        .where((r) => r.city.toLowerCase().contains('den haag'))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +46,7 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ),
                 Text(
-                  'Code: ${user?.friendCode ?? "FOODIE-1234"}',
+                  'Code: ${user?.friendCode ?? "FOODIE-1234"} • ${allRestaurants.length} NL Spots',
                   style: const TextStyle(
                     fontSize: 11,
                     color: AppColors.textMuted,
@@ -55,7 +60,10 @@ class HomeScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () => onTabSelected(3), // Navigate to Explore
-            icon: const Icon(Icons.local_fire_department_rounded, color: AppColors.primary),
+            icon: const Icon(
+              Icons.local_fire_department_rounded,
+              color: AppColors.primary,
+            ),
             tooltip: 'Explore Restaurants',
           ),
           const SizedBox(width: 8),
@@ -64,6 +72,67 @@ class HomeScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         children: [
+          // 0. Active Group Session Live Banner (if in a room)
+          if (activeGroup != null) ...[
+            InkWell(
+              onTap: () => onTabSelected(1),
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.surfaceDark,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: AppColors.accentGreen, width: 1.5),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: AppColors.accentGreen.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.groups_rounded,
+                        color: AppColors.accentGreen,
+                        size: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Active Room: ${activeGroup.title}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            'PIN: ${activeGroup.pinCode} • ${activeGroup.members.length} friends • ${activeGroup.matchedRestaurantIds.length} matches',
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.white,
+                      size: 16,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
+          ],
+
           // 1. Group Swiping Promo CTA Banner (Kahoot-style)
           Container(
             padding: const EdgeInsets.all(20),
@@ -89,13 +158,16 @@ class HomeScreen extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.25),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
-                        'KAHOOT-STYLE SWIPING',
+                        'LIVE MULTI-IPHONE SWIPING',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 10,
@@ -104,7 +176,11 @@ class HomeScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    const Icon(Icons.groups_rounded, color: Colors.white, size: 28),
+                    const Icon(
+                      Icons.groups_rounded,
+                      color: Colors.white,
+                      size: 28,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
@@ -119,27 +195,34 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Create a PIN room or send a link. Swipe together and see instant matches!',
+                  'Host a PIN room in Den Haag or across NL. Swipe on multiple iPhones and get live confetti matches!',
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 13,
                   ),
                 ),
                 const SizedBox(height: 16),
-                ElevatedButton.icon(
-                  onPressed: () => onTabSelected(1), // Go to Groups tab
-                  icon: const Icon(Icons.play_arrow_rounded, color: AppColors.primary),
-                  label: const Text(
-                    'Start Group Session',
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w800,
+                Row(
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () => onTabSelected(1), // Go to Groups tab
+                      icon: const Icon(
+                        Icons.play_arrow_rounded,
+                        color: AppColors.primary,
+                      ),
+                      label: const Text(
+                        'Start Group Session',
+                        style: TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: AppColors.primary,
+                      ),
                     ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: AppColors.primary,
-                  ),
+                  ],
                 ),
               ],
             ),
@@ -154,11 +237,17 @@ class HomeScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: AppColors.accentGold.withOpacity(0.12),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.accentGold.withOpacity(0.3)),
+                border: Border.all(
+                  color: AppColors.accentGold.withOpacity(0.3),
+                ),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.person_add_rounded, color: AppColors.accentGold, size: 28),
+                  const Icon(
+                    Icons.person_add_rounded,
+                    color: AppColors.accentGold,
+                    size: 28,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -188,11 +277,16 @@ class HomeScreen extends ConsumerWidget {
                           .read(authProvider.notifier)
                           .acceptFriendRequest(user.incomingFriendRequests.first);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Friend request accepted! 🎉')),
+                        const SnackBar(
+                          content: Text('Friend request accepted! 🎉'),
+                        ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 8,
+                      ),
                     ),
                     child: const Text('Accept', style: TextStyle(fontSize: 12)),
                   ),
@@ -202,12 +296,49 @@ class HomeScreen extends ConsumerWidget {
             const SizedBox(height: 24),
           ],
 
-          // 3. Trending NL Hotspots Carousel
+          // 3. Den Haag Spotlight Carousel (55 Hotspots!)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Den Haag Hotspots (${denHaagRestaurants.length}) 🏖️',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  ref.read(selectedCityProvider.notifier).state = 'Den Haag';
+                  onTabSelected(3);
+                },
+                child: const Text('Swipe Den Haag'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+
+          SizedBox(
+            height: 215,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: denHaagRestaurants.take(12).length,
+              itemBuilder: (context, index) {
+                final r = denHaagRestaurants[index];
+                return _buildRestaurantMiniCard(context, r);
+              },
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // 4. Trending NL Hotspots Carousel
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Trending Hotspots in NL 🇳🇱',
+                'Trending Across NL 🇳🇱',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
@@ -215,98 +346,37 @@ class HomeScreen extends ConsumerWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => onTabSelected(3),
-                child: const Text('Swipe All'),
+                onPressed: () {
+                  ref.read(selectedCityProvider.notifier).state = 'All Cities';
+                  onTabSelected(3);
+                },
+                child: const Text('Swipe All 105'),
               ),
             ],
           ),
           const SizedBox(height: 8),
 
           SizedBox(
-            height: 210,
+            height: 215,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: allRestaurants.take(5).length,
+              itemCount: allRestaurants
+                  .where((r) => !r.city.toLowerCase().contains('den haag'))
+                  .take(10)
+                  .length,
               itemBuilder: (context, index) {
-                final r = allRestaurants[index];
-                return GestureDetector(
-                  onTap: () => RestaurantDetailsSheet.show(context, r),
-                  child: Container(
-                    width: 170,
-                    margin: const EdgeInsets.only(right: 14),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.06),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-                          child: CachedNetworkImage(
-                            imageUrl: r.photoUrls.first,
-                            height: 110,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                r.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                '${r.city} • ${r.priceTier}',
-                                style: const TextStyle(
-                                  fontSize: 11,
-                                  color: AppColors.textSecondary,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Icon(Icons.star, color: AppColors.accentGold, size: 14),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    r.rating.toStringAsFixed(1),
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                final otherSpots = allRestaurants
+                    .where((r) => !r.city.toLowerCase().contains('den haag'))
+                    .toList();
+                final r = otherSpots[index];
+                return _buildRestaurantMiniCard(context, r);
               },
             ),
           ),
 
           const SizedBox(height: 28),
 
-          // 4. News & Updates Feed
+          // 5. News & Updates Feed
           const Text(
             'Latest News & Community',
             style: TextStyle(
@@ -335,7 +405,9 @@ class HomeScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
                     child: CachedNetworkImage(
                       imageUrl: news.imageUrl,
                       height: 140,
@@ -351,7 +423,10 @@ class HomeScreen extends ConsumerWidget {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 3,
+                              ),
                               decoration: BoxDecoration(
                                 color: AppColors.primary.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(8),
@@ -366,11 +441,18 @@ class HomeScreen extends ConsumerWidget {
                               ),
                             ),
                             const Spacer(),
-                            const Icon(Icons.access_time, size: 14, color: AppColors.textMuted),
+                            const Icon(
+                              Icons.access_time,
+                              size: 14,
+                              color: AppColors.textMuted,
+                            ),
                             const SizedBox(width: 4),
-                            Text(
-                              'Recently',
-                              style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+                            const Text(
+                              'Recent',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: AppColors.textMuted,
+                              ),
                             ),
                           ],
                         ),
@@ -416,6 +498,97 @@ class HomeScreen extends ConsumerWidget {
 
           const SizedBox(height: 20),
         ],
+      ),
+    );
+  }
+
+  Widget _buildRestaurantMiniCard(BuildContext context, dynamic r) {
+    return GestureDetector(
+      onTap: () => RestaurantDetailsSheet.show(context, r),
+      child: Container(
+        width: 175,
+        margin: const EdgeInsets.only(right: 14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.06),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(20),
+              ),
+              child: CachedNetworkImage(
+                imageUrl: r.photoUrls.first,
+                height: 112,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    r.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${r.neighborhood} • ${r.priceTier}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textSecondary,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star_rounded,
+                        color: AppColors.accentGold,
+                        size: 15,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        r.rating.toStringAsFixed(1),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 12,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        r.city,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

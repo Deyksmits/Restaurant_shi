@@ -3,7 +3,7 @@ import '../models/restaurant.dart';
 
 final List<Restaurant> kUtrechtAndRegionalSeed = [
   // 1. The Streetfood Club
-  Restaurant(
+  const Restaurant(
     id: 'utr_01',
     name: 'The Streetfood Club',
     tagline: 'Extravagant pastel luxury decor, Asian-Latin street food & cocktails',
@@ -46,7 +46,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 2. WT Urban Kitchen
-  Restaurant(
+  const Restaurant(
     id: 'utr_02',
     name: 'WT Urban Kitchen',
     tagline: 'Spectacular fine dining at the top of a historic 1907 industrial water tower',
@@ -80,7 +80,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 3. LE:EN
-  Restaurant(
+  const Restaurant(
     id: 'utr_03',
     name: 'LE:EN',
     tagline: 'Industrial warehouse serving vibrant Asian shared dining & craft beer',
@@ -115,7 +115,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 4. Gys Utrecht
-  Restaurant(
+  const Restaurant(
     id: 'utr_04',
     name: 'Gys Utrecht',
     tagline: '100% organic, gluten-free and vegan comfort food & natural cider',
@@ -152,7 +152,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 5. Ruby Rose
-  Restaurant(
+  const Restaurant(
     id: 'utr_05',
     name: 'Ruby Rose',
     tagline: 'Opulent floral wine bar with grand antipasti counter & Mediterranean shared plates',
@@ -186,7 +186,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 6. Broodje Mario
-  Restaurant(
+  const Restaurant(
     id: 'utr_06',
     name: 'Broodje Mario',
     tagline: 'Legendary canal street food kiosk serving Utrecht iconic Italian sandwich since 1977',
@@ -220,7 +220,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 7. Beers & Barrels
-  Restaurant(
+  const Restaurant(
     id: 'utr_07',
     name: 'Beers & Barrels',
     tagline: 'Historic vaulted canal cellars with private beer tap tables & gourmet burgers',
@@ -254,7 +254,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 8. Kartoffel
-  Restaurant(
+  const Restaurant(
     id: 'utr_08',
     name: 'Kartoffel',
     tagline: 'Authentic Bavarian canal cellar with crisp giant schnitzels & wheat beer',
@@ -288,7 +288,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 9. Stads-Koffyhuis Delft
-  Restaurant(
+  const Restaurant(
     id: 'del_01',
     name: 'Stads-Koffyhuis Delft',
     tagline: 'Winner Best Sandwich in the Netherlands on the historic Oude Delft canal',
@@ -322,7 +322,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 10. De Kurk Delft
-  Restaurant(
+  const Restaurant(
     id: 'del_02',
     name: 'De Kurk',
     tagline: 'Atmospheric vaulted wine restaurant & secret garden in the heart of Delft',
@@ -357,7 +357,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 11. Het Pakhuis Leiden
-  Restaurant(
+  const Restaurant(
     id: 'lei_01',
     name: 'Het Pakhuis Leiden',
     tagline: 'Bustling student town bistro in a monumental warehouse with classic steaks and fondue',
@@ -392,7 +392,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 12. Lot & de Walvis Leiden
-  Restaurant(
+  const Restaurant(
     id: 'lei_02',
     name: 'Lot & de Walvis',
     tagline: 'Waterfront harbor terrace in Leiden serving worldly comfort food and fresh brunch',
@@ -427,7 +427,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 13. Down Town Gourmet Market Eindhoven
-  Restaurant(
+  const Restaurant(
     id: 'ein_01',
     name: 'Down Town Gourmet Market',
     tagline: 'Bustling indoor food market with 21 international chef kitchens & central courtyard',
@@ -462,7 +462,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 14. Radio Royaal Eindhoven
-  Restaurant(
+  const Restaurant(
     id: 'ein_02',
     name: 'Radio Royaal',
     tagline: 'Monumental 1300m² Philips energy building serving French-German cuisine',
@@ -497,7 +497,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 15. Het Ketelhuis
-  Restaurant(
+  const Restaurant(
     id: 'ein_03',
     name: 'Het Ketelhuis',
     tagline: 'Raw creative industrial kitchen with wood-fired cooking & rooftop garden',
@@ -534,7 +534,7 @@ final List<Restaurant> kUtrechtAndRegionalSeed = [
   ),
 
   // 16. Kazerne
-  Restaurant(
+  const Restaurant(
     id: 'ein_04',
     name: 'Kazerne',
     tagline: 'Design exhibition gallery and high-end Italian cuisine in a former military barracks',

@@ -3,7 +3,7 @@ import '../models/restaurant.dart';
 
 final List<Restaurant> kDenHaagRestaurantsSeed = [
   // 1. Bøg
-  Restaurant(
+  const Restaurant(
     id: 'dh_01',
     name: 'Bøg',
     tagline: 'New Nordic gastronomy focused on seasonal organic purity',
@@ -54,7 +54,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 2. De Twee Heeren
-  Restaurant(
+  const Restaurant(
     id: 'dh_02',
     name: 'De Twee Heeren',
     tagline: 'Cozy traditional Dutch brown café with honest comfort food',
@@ -103,7 +103,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 3. Little V Den Haag
-  Restaurant(
+  const Restaurant(
     id: 'dh_03',
     name: 'Little V Den Haag',
     tagline: 'Lush tropical South-Vietnamese street food & exotic cocktails',
@@ -155,7 +155,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 4. Dekxels
-  Restaurant(
+  const Restaurant(
     id: 'dh_04',
     name: 'Dekxels',
     tagline: 'Vibrant Asian-Mediterranean fusion and shared dining on Denneweg',
@@ -206,7 +206,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 5. Catch by Simonis
-  Restaurant(
+  const Restaurant(
     id: 'dh_05',
     name: 'Catch by Simonis',
     tagline: 'World-class seafood, raw bar & panoramic Scheveningen marina views',
@@ -256,7 +256,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 6. Encore by Simonis
-  Restaurant(
+  const Restaurant(
     id: 'dh_06',
     name: 'Encore by Simonis',
     tagline: 'High-energy dining with premium steaks, sushi & fresh ocean fish',
@@ -298,7 +298,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 7. Simonis aan de Haven
-  Restaurant(
+  const Restaurant(
     id: 'dh_07',
     name: 'Simonis aan de Haven',
     tagline: 'Historic traditional Dutch fishmonger & bustling family seafood feast',
@@ -347,7 +347,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 8. Warung Mini Den Haag
-  Restaurant(
+  const Restaurant(
     id: 'dh_08',
     name: 'Warung Mini Den Haag',
     tagline: 'Iconic Surinamese-Javanese soul food with legendary Saoto & Roti',
@@ -398,7 +398,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 9. Restaurant Zheng
-  Restaurant(
+  const Restaurant(
     id: 'dh_09',
     name: 'Restaurant Zheng',
     tagline: 'Imperial Chinese culinary art based on 4 historic banquet chapters',
@@ -439,7 +439,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 10. Basaal
-  Restaurant(
+  const Restaurant(
     id: 'dh_10',
     name: 'Basaal',
     tagline: 'Canalside Michelin Bib Gourmand bistro with relaxed modern dining',
@@ -481,7 +481,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 11. Garoeda
-  Restaurant(
+  const Restaurant(
     id: 'dh_11',
     name: 'Garoeda',
     tagline: 'The historic royal Indonesian restaurant on Kneuterdijk since 1949',
@@ -524,7 +524,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 12. Poentjak
-  Restaurant(
+  const Restaurant(
     id: 'dh_12',
     name: 'Poentjak',
     tagline: 'Authentic Javanese home cooking, famous charcoal satay & rendang',
@@ -568,7 +568,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 13. Vincenzo's Osteria
-  Restaurant(
+  const Restaurant(
     id: 'dh_13',
     name: "Vincenzo's Osteria",
     tagline: 'Neapolitan artisanal wood-fired pizza & fresh handmade pasta',
@@ -619,7 +619,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 14. Walter Benedict
-  Restaurant(
+  const Restaurant(
     id: 'dh_14',
     name: 'Walter Benedict',
     tagline: 'Parisian boulevard elegance, famous eggs benedict & steak frites',
@@ -661,7 +661,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 15. Bistro Mer
-  Restaurant(
+  const Restaurant(
     id: 'dh_15',
     name: 'Bistro Mer',
     tagline: 'Classic French seafood institute with grand plateau de fruits de mer',
@@ -703,7 +703,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 16. Jamey Bennett
-  Restaurant(
+  const Restaurant(
     id: 'dh_16',
     name: 'Jamey Bennett',
     tagline: 'The vibrant living room on the Plaats overlooking the Hofvijver',
@@ -745,7 +745,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 17. Kua Mexican Kitchen
-  Restaurant(
+  const Restaurant(
     id: 'dh_17',
     name: 'Kua Mexican Kitchen',
     tagline: '100% authentic Mexican tacos, slow-braised carnitas & artisanal mezcal',
@@ -790,7 +790,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 18. Takumi Ramen Den Haag
-  Restaurant(
+  const Restaurant(
     id: 'dh_18',
     name: 'Takumi Ramen Den Haag',
     tagline: 'Original Sapporo noodle soup with 20-hour simmered pork & chicken broth',
@@ -833,7 +833,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 19. Set Genki Tei
-  Restaurant(
+  const Restaurant(
     id: 'dh_19',
     name: 'Set Genki Tei',
     tagline: 'Japanese hotpot, bento boxes and authentic artisanal matcha sweets',
@@ -875,7 +875,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 20. Bleyenberg
-  Restaurant(
+  const Restaurant(
     id: 'dh_20',
     name: 'Bleyenberg',
     tagline: 'Multilevel canteen, craft cocktails & iconic rooftop overlooking Grote Markt',
@@ -917,7 +917,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 21. De Boterwaag
-  Restaurant(
+  const Restaurant(
     id: 'dh_21',
     name: 'De Boterwaag',
     tagline: 'Monumental 17th-century butter weighing house with a bustling terrace',
@@ -959,7 +959,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 22. De Zwarte Ruiter
-  Restaurant(
+  const Restaurant(
     id: 'dh_22',
     name: 'De Zwarte Ruiter',
     tagline: "Rock 'n roll tavern with craft beers, organic burgers & live music",
@@ -1002,7 +1002,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 23. Zeta
-  Restaurant(
+  const Restaurant(
     id: 'dh_23',
     name: 'Zeta',
     tagline: 'Casual Asian street food, steam buns & vibrant Grote Markt terrace',
@@ -1044,7 +1044,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 24. Vavoom Tiki Bar
-  Restaurant(
+  const Restaurant(
     id: 'dh_24',
     name: 'Vavoom Tiki Bar',
     tagline: 'Polynesian paradise with flaming tropical cocktails and island bites',
@@ -1085,7 +1085,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 25. Pistache Café
-  Restaurant(
+  const Restaurant(
     id: 'dh_25',
     name: 'Pistache Café',
     tagline: 'Fresh organic breakfast, bowls & picnic baskets by the Royal Paleistuin',
@@ -1130,7 +1130,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 26. Mogador Café
-  Restaurant(
+  const Restaurant(
     id: 'dh_26',
     name: 'Mogador Café',
     tagline: 'Artisanal Moroccan coffee, freshly baked pastilla & mint tea',
@@ -1174,7 +1174,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 27. Foam Catering & Café
-  Restaurant(
+  const Restaurant(
     id: 'dh_27',
     name: 'Foam Catering & Café',
     tagline: '100% plant-based organic kitchen with colourful brunch bowls and cakes',
@@ -1221,7 +1221,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 28. De Vegetarische Snackbar
-  Restaurant(
+  const Restaurant(
     id: 'dh_28',
     name: 'De Vegetarische Snackbar',
     tagline: 'Pioneering Dutch fast food without cruelty: famous vegan kapsalon',
@@ -1266,7 +1266,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 29. Hart Beach Surf Restaurant
-  Restaurant(
+  const Restaurant(
     id: 'dh_29',
     name: 'Hart Beach Surf Restaurant',
     tagline: 'Year-round North Sea surf vibes, acai bowls, juicy smash burgers & fireplace',
@@ -1307,7 +1307,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 30. The Shore Scheveningen
-  Restaurant(
+  const Restaurant(
     id: 'dh_30',
     name: 'The Shore Scheveningen',
     tagline: '100% solar powered sustainable surf clubhouse & artisan sourdough pancakes',
@@ -1351,7 +1351,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 31. De Waterreus
-  Restaurant(
+  const Restaurant(
     id: 'dh_31',
     name: 'De Waterreus',
     tagline: 'Winner Best Beach Club in the Netherlands, open 365 days a year',
@@ -1394,7 +1394,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 32. Suiderstrand
-  Restaurant(
+  const Restaurant(
     id: 'dh_32',
     name: 'Suiderstrand',
     tagline: 'Hidden oasis in the quiet dunes of Kijkduin with Mediterranean soul food',
@@ -1438,7 +1438,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 33. Tapisco
-  Restaurant(
+  const Restaurant(
     id: 'dh_33',
     name: 'Tapisco',
     tagline: 'Refined Iberian tapas & Portuguese petiscos by Michelin master Marcel van der Kleijn',
@@ -1481,7 +1481,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 34. Restaurant Calla's
-  Restaurant(
+  const Restaurant(
     id: 'dh_34',
     name: "Restaurant Calla's",
     tagline: 'Michelin-starred classical French haute cuisine with produce from its private kitchen garden',
@@ -1515,7 +1515,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 35. Oogst
-  Restaurant(
+  const Restaurant(
     id: 'dh_35',
     name: 'Oogst',
     tagline: 'Fresh market-driven bistro directly linked to private vegetable farms',
@@ -1549,7 +1549,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 36. Baladi Manouche
-  Restaurant(
+  const Restaurant(
     id: 'dh_36',
     name: 'Baladi Manouche',
     tagline: 'Warm Lebanese oven-baked flatbreads, zaatar & fresh halloumi',
@@ -1592,7 +1592,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 37. 6&Sami
-  Restaurant(
+  const Restaurant(
     id: 'dh_37',
     name: '6&Sami',
     tagline: 'Modern Palestinian & Levantine hospitality with creative mezze sharing',
@@ -1635,7 +1635,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 38. Fat Kee
-  Restaurant(
+  const Restaurant(
     id: 'dh_38',
     name: 'Fat Kee',
     tagline: 'The Hague legendary late-night Cantonese kitchen & roast duck masters',
@@ -1676,7 +1676,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 39. Full Moon City
-  Restaurant(
+  const Restaurant(
     id: 'dh_39',
     name: 'Full Moon City',
     tagline: 'Authentic Hong Kong Dim Sum served piping hot in bamboo baskets',
@@ -1718,7 +1718,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 40. Soju Bar Den Haag
-  Restaurant(
+  const Restaurant(
     id: 'dh_40',
     name: 'Soju Bar Den Haag',
     tagline: 'Crispy double-fried Korean chicken, beer & flavored soju towers',
@@ -1760,7 +1760,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 41. Seoul Sista
-  Restaurant(
+  const Restaurant(
     id: 'dh_41',
     name: 'Seoul Sista Den Haag',
     tagline: 'Unlimited Korean table BBQ with tabletop charcoal grills and banchan',
@@ -1794,7 +1794,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 42. Kompaan Brouwerij & Thuishaven
-  Restaurant(
+  const Restaurant(
     id: 'dh_42',
     name: 'Kompaan Brouwerij & Thuishaven',
     tagline: 'Craft beer taproom by the Binckhorst harbor with wood-smoked barbecue',
@@ -1835,7 +1835,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 43. Mama Kelly Den Haag
-  Restaurant(
+  const Restaurant(
     id: 'dh_43',
     name: 'Mama Kelly Den Haag',
     tagline: 'Iconic industrial boiler house famous for wood-roasted Chicken & whole Lobster',
@@ -1878,7 +1878,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 44. Capriole Café
-  Restaurant(
+  const Restaurant(
     id: 'dh_44',
     name: 'Capriole Café',
     tagline: 'Artisan specialty coffee roastery & Michelin-recommended waterfront dining',
@@ -1912,7 +1912,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 45. Grand Café Victoria
-  Restaurant(
+  const Restaurant(
     id: 'dh_45',
     name: 'Grand Café Victoria',
     tagline: 'Grand European bistro terrace on the stately Prins Hendrikplein roundabout',
@@ -1946,7 +1946,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 46. De Prael Den Haag
-  Restaurant(
+  const Restaurant(
     id: 'dh_46',
     name: 'De Prael Den Haag',
     tagline: 'Social craft brewery in a monumental former factory with beers & pub food',
@@ -1980,7 +1980,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 47. Pinchos Bar Corto
-  Restaurant(
+  const Restaurant(
     id: 'dh_47',
     name: 'Pinchos Bar Corto',
     tagline: 'Basque pintxos on the counter, Spanish vermouth & lively chatter',
@@ -2014,7 +2014,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 48. De Basiliek
-  Restaurant(
+  const Restaurant(
     id: 'dh_48',
     name: 'De Basiliek',
     tagline: 'Intimate wine sanctuary and Mediterranean tapas in a historic alley',
@@ -2050,7 +2050,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 49. Donato Delicatessen
-  Restaurant(
+  const Restaurant(
     id: 'dh_49',
     name: 'Donato Delicatessen',
     tagline: 'Authentic Roman street food, warm stuffed schiacciata & Italian wines',
@@ -2084,7 +2084,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 50. De Sushimeisjes
-  Restaurant(
+  const Restaurant(
     id: 'dh_50',
     name: 'De Sushimeisjes',
     tagline: 'Playful, artisanal sushi rolls with colorful toppings and fresh fish',
@@ -2118,7 +2118,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 51. Wicked Wines
-  Restaurant(
+  const Restaurant(
     id: 'dh_51',
     name: 'Wicked Wines',
     tagline: 'Casual fine dining with Asian-French dishes & sunny square terrace',
@@ -2153,7 +2153,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 52. Het Gouden Kalf
-  Restaurant(
+  const Restaurant(
     id: 'dh_52',
     name: 'Het Gouden Kalf',
     tagline: 'Refined harbor bistro, natural wines & seasonal North Sea seafood',
@@ -2188,7 +2188,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 53. Pastanini
-  Restaurant(
+  const Restaurant(
     id: 'dh_53',
     name: 'Pastanini',
     tagline: 'Roman style pinsa, artisanal fresh pasta & Italian aperitivo on De Fred',
@@ -2222,7 +2222,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 54. Brasserie Willem
-  Restaurant(
+  const Restaurant(
     id: 'dh_54',
     name: 'Brasserie Willem',
     tagline: 'Charming neighborhood brasserie with dry-aged meats and oysters',
@@ -2257,7 +2257,7 @@ final List<Restaurant> kDenHaagRestaurantsSeed = [
   ),
 
   // 55. Café Loft
-  Restaurant(
+  const Restaurant(
     id: 'dh_55',
     name: 'Café Loft',
     tagline: 'Unique coffee sanctuary inside the majestic modernist Jeruzalemkerk',
