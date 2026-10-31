@@ -11,12 +11,16 @@ A cross-platform mobile application (iOS & Android) built with **Flutter**, **Da
   * Apple ID, Google, and Phone Number (`+31` Netherlands default) simulated sign-in.
   * Upgrade guest account anytime from Settings without losing saved data.
 
-* 🎯 **Kahoot-Style Real-Time Group Swiping**:
-  * Host creates a room with custom title, date, and city (Amsterdam, Rotterdam, Utrecht, etc.).
-  * Generates a 6-digit PIN code (e.g. `482 910`) and share link.
-  * Configurable matching rules: **Unanimous (100% consensus)** or **Majority (>50%)**.
-  * Aggregates dietary restrictions (e.g. auto-filters vegetarian spots if any member is vegetarian).
-  * Real-time lobby and synchronized swiping with celebratory confetti explosion upon match!
+* ☁️ **Real-Time Cloud Group Synchronization (Firebase Option 1)**:
+  * **Multi-Device Live Sync**: Seamless synchronization across two or more physical iPhones, Android devices, and web browsers.
+  * **Kahoot-Style PIN Rooms**: Host creates a room with custom title, date, and city; generates a 6-digit PIN code (e.g. `482 910`).
+  * **Live Multiplayer Swiping**: Friends join via PIN over 4G/Wi-Fi; votes are synchronized in real-time.
+  * **Instant Match Celebration**: Automatic unanimous (100%) or majority (>50%) matching triggers a synchronized confetti explosion dialog on all connected devices simultaneously!
+  * **Dietary Aggregation**: Automatically aggregates allergies & preferences (Vegetarian, Vegan, Halal, Gluten-free) of all room members.
+
+* 🇳🇱 **Curated Authentic Dutch Dataset (105 Hand-Selected Venues)**:
+  * **55+ Hotspots in Den Haag (The Hague)**: From Scheveningen Beach & Haven (*Catch by Simonis, Encore, Simonis aan de Haven, Hart Beach, The Shore*) to Hofkwartier & Zeeheldenkwartier (*Bøg, De Twee Heeren, Vincenzo's, Walter Benedict, Bistro Mer, Jamey Bennett, Kua, Takumi Ramen, Garoeda, Poentjak, Warung Mini, Zheng, Basaal*), Chinatown (*Fat Kee, Full Moon City, Little V*), and Binckhorst (*Kompaan Brouwerij, Mama Kelly, Capriole Café*).
+  * **50+ Iconic NL Hotspots**: Rotterdam (*Supermercado, Dudok, Kaat Mossel, Hotel New York, Bazar, Ter Marsch & Co*), Amsterdam (*Café de Klos, Blauw, De Kas, Cannibale Royale, Vegan Junk Food Bar, Winkel 43*), Utrecht (*The Streetfood Club, WT Urban Kitchen, LE:EN, Gys*), Delft (*Stads-Koffyhuis, De Kurk*), Leiden (*Lot & de Walvis, Het Pakhuis*), and Eindhoven (*Down Town Gourmet Market, Radio Royaal*).
 
 * 🔥 **Tinder-Style Explore Feed**:
   * Fluid swipe cards (drag right to **Like**, left to **Nope**, up to **Super Like**).
@@ -33,9 +37,6 @@ A cross-platform mobile application (iOS & Android) built with **Flutter**, **Da
   * Business partner simulation dashboard.
   * Real-time analytics: Impressions, Right Swipes (Likes), and Group Matches.
   * Venue onboarding form to submit new restaurants and highlight signature dishes. Newly submitted restaurants instantly appear in the Explore deck and Home news feed.
-
-* 🇳🇱 **Curated Authentic Dutch Dataset**:
-  * High-res imagery and authentic Dutch menus across Amsterdam, Rotterdam, Utrecht, Den Haag, and Eindhoven (e.g., *Café de Klos*, *Blauw Indonesian Rijsttafel*, *The Streetfood Club*, *Supermercado*, *Dudok*, *Vegan Junk Food Bar*).
 
 ---
 
@@ -75,11 +76,60 @@ flutter run -d android
 *(To build a standalone APK to share with friends on WhatsApp or Google Drive: `flutter build apk --split-per-abi`)*
 
 #### C. Run on iOS (iPhone):
+
+##### Option 1 — Test on iPhone over Local Wi-Fi (Direct, Zero Tools or Accounts Needed!):
+As long as your iPhone and Windows PC are connected to the same Wi-Fi network:
+
+1. **Start the Flutter Web Server**:
+   ```powershell
+   flutter run -d web-server --web-hostname=0.0.0.0 --web-port=8080
+   ```
+2. **Open on your iPhone**:
+   * Open **Safari** and enter your PC's local IP address:
+     ```text
+     http://192.168.2.10:8080
+     ```
+   * *Pro-tip*: Tap the Safari **Share** icon (square with arrow) → select **"Add to Home Screen"**. It will launch full-screen with native touch swiping and no browser bars!
+
+##### Option 2 — Cloudflare Quick Tunnel (Free, Zero Account / No Signup Needed):
+If you want to test outside your home Wi-Fi (e.g. over 4G/5G) without creating any account or API tokens:
+
+1. **Install Cloudflare Tunnel**:
+   ```powershell
+   winget install Cloudflare.cloudflared
+   ```
+2. **Start Flutter**:
+   ```powershell
+   flutter run -d web-server --web-port=8080
+   ```
+3. **Start the Free Cloudflare Tunnel** (in a separate terminal):
+   ```powershell
+   cloudflared tunnel --url http://localhost:8080
+   ```
+   *Cloudflare will print an instant, secure `https://....trycloudflare.com` URL that you can open on any iPhone.*
+
+##### Option 3 — Built-in VS Code Port Forwarding (If using VS Code):
+1. Open this repository in VS Code.
+2. Run `flutter run -d web-server --web-port=8080`.
+3. In VS Code's bottom panel, click the **"Ports"** tab.
+4. Click **Forward a Port** → enter `8080`.
+5. Right-click the forwarded port → change **Port Visibility** to **Public**.
+6. Copy the generated HTTPS link and open it in Safari on your iPhone.
+
+##### Option 4 — Native iOS Build via macOS (Xcode):
 1. Open `ios/Runner.xcworkspace` in Xcode on macOS.
 2. Select your free personal Apple ID in **Signing & Capabilities**.
 3. Run directly on your connected iPhone:
 ```powershell
 flutter run -d ios
+```
+
+---
+
+### Step 4: Automated Testing
+Run the test suite to verify the recommendation algorithm and matching logic:
+```powershell
+flutter test
 ```
 
 ---

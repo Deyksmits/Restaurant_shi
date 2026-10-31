@@ -159,6 +159,7 @@ class ActiveGroupNotifier extends StateNotifier<GroupSession?> {
   }
 
   void leaveGroup() {
+    _db.stopWatchingGroup();
     state = null;
   }
 }

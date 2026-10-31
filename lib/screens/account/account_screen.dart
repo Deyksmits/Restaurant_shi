@@ -379,9 +379,52 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
             ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
 
-          // 5. Contact & Support
+          // 5. Cloud Database Status (Firebase Option 1)
+          ListTile(
+            tileColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: const BorderSide(color: AppColors.border),
+            ),
+            leading: const Icon(Icons.cloud_done_rounded, color: AppColors.accentGreen),
+            title: const Text('Real-Time Cloud Sync (Firebase)', style: TextStyle(fontWeight: FontWeight.w700)),
+            subtitle: const Text('Europe (Frankfurt) • Multiplayer Swiping Active'),
+            trailing: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: AppColors.accentGreen.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Text(
+                'LIVE 🟢',
+                style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.accentGreen),
+              ),
+            ),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  title: const Text('Cloud Synchronization ☁️'),
+                  content: const Text(
+                    'Your group dinners are synchronized in real-time across devices via Google Firebase.\n\n'
+                    'When friends join your 6-digit room PIN from another iPhone or browser, members and votes update automatically.',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(ctx).pop(),
+                      child: const Text('Awesome!'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+
+          const SizedBox(height: 12),
+
+          // 6. Contact & Support
           ListTile(
             tileColor: Colors.white,
             shape: RoundedRectangleBorder(

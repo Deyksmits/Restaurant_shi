@@ -5,6 +5,7 @@ import '../models/group_session.dart';
 import '../models/news_item.dart';
 import '../models/restaurant.dart';
 import '../models/user_profile.dart';
+import 'cloud_sync_service.dart';
 
 class MockDatabaseService {
   static final MockDatabaseService _instance = MockDatabaseService._internal();
@@ -13,6 +14,7 @@ class MockDatabaseService {
     _initData();
   }
 
+  final CloudSyncService _cloudSync = CloudSyncService();
   final List<Restaurant> _restaurants = [];
   final Map<String, GroupSession> _groups = {};
   final List<NewsItem> _newsFeed = [];
@@ -23,7 +25,21 @@ class MockDatabaseService {
   final _userUpdatesController = StreamController<UserProfile>.broadcast();
 
   Stream<GroupSession> watchGroup(String roomId) {
+    // Start active real-time cloud synchronization
+    _cloudSync.startWatchingGroup(
+      roomId,
+      onUpdate: (cloudGroup) {
+        _groups[cloudGroup.id] = cloudGroup;
+        _groups[cloudGroup.pinCode] = cloudGroup;
+        _groupUpdatesController.add(cloudGroup);
+      },
+    );
+
     return _groupUpdatesController.stream.where((group) => group.id == roomId || group.pinCode == roomId);
+  }
+
+  void stopWatchingGroup() {
+    _cloudSync.stopWatchingGroup();
   }
 
   Stream<UserProfile> watchCurrentUser() {
@@ -272,6 +288,10 @@ class MockDatabaseService {
     _groups[groupId] = newGroup;
     _groups[pin] = newGroup;
     _groupUpdatesController.add(newGroup);
+
+    // Push new room to Cloud Database
+    unawaited(_cloudSync.pushGroupToCloud(newGroup));
+
     return newGroup;
   }
 
@@ -279,12 +299,16 @@ class MockDatabaseService {
     final normalized = pinCode.replaceAll(' ', '').trim();
     GroupSession? found;
 
+    // 1. Check local cache
     for (final g in _groups.values) {
       if (g.pinCode.replaceAll(' ', '') == normalized) {
         found = g;
         break;
       }
     }
+
+    // 2. Query Cloud Database if not found in local memory (e.g. created on another iPhone)
+    found ??= await _cloudSync.fetchGroupByPin(pinCode);
 
     if (found == null) return null;
     final user = _currentUser!;
@@ -308,6 +332,9 @@ class MockDatabaseService {
       _groups[found.id] = found;
       _groups[found.pinCode] = found;
       _groupUpdatesController.add(found);
+
+      // Publish updated member list to Cloud
+      unawaited(_cloudSync.pushGroupToCloud(found));
     }
 
     return found;
@@ -320,6 +347,9 @@ class MockDatabaseService {
     _groups[groupId] = updated;
     _groups[updated.pinCode] = updated;
     _groupUpdatesController.add(updated);
+
+    // Sync status change to Cloud
+    unawaited(_cloudSync.pushGroupToCloud(updated));
   }
 
   Future<String?> recordGroupSwipe({
@@ -369,6 +399,9 @@ class MockDatabaseService {
     _groups[groupId] = updated;
     _groups[updated.pinCode] = updated;
     _groupUpdatesController.add(updated);
+
+    // Push vote and match status to Cloud
+    unawaited(_cloudSync.pushGroupToCloud(updated));
 
     return newlyMatchedId;
   }
